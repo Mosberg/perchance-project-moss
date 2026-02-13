@@ -723,7 +723,7 @@ modes
 
 // #42
   ropeBunny
-    label = 🪢 Rope Bunny
+    label = 🐰 Rope Bunny
     instruction
       Convert this text to reflect the headspace of someone who loves being bound - describe textures, restraint, and yielding control.
       {|}
@@ -2179,7 +2179,7 @@ modes
 
 // #133
   choking
-    label = 🫁 Choking
+    label = 🤐 Choking
     instruction
       Rewrite this to feature controlled choking/strangulation play. Emphasize breath control, the thrill of breathlessness, the power exchange, and the heightened intensity and arousal that comes from restricting air.
       {|}
@@ -4003,7 +4003,7 @@ modes
 
 // #240
   pvc
-    label = 🪣 PVC
+    label = 🧥 PVC
     instruction
       Rewrite this to feature PVC fetish - sexual attraction to PVC plastic clothing. Emphasize the material, the shiny appearance, the squeaking sound, and the sexuality of PVC.
       {|}
@@ -4035,7 +4035,7 @@ modes
 
 // #242
   rubber
-    label = 🛞 Rubber
+    label = 🥽 Rubber
     instruction
       Rewrite this to feature rubber fetish - sexual attraction to rubber materials. Emphasize latex-like rubber, the smell, the sensation, and the sexuality of rubber clothing.
       {|}
@@ -4179,7 +4179,7 @@ modes
 
 // BATCH 1: Custom category
   customMinimal
-    label = 🪶 Custom (Minimal)
+    label = 🔨 Custom (Minimal)
     instruction
       Your task is to rewrite the following text according to this instruction: [customModeInstructionEl.value]
       {|}
@@ -4437,7 +4437,7 @@ modes
     hideStartWith = true
 
   stepByStep
-    label = 🪜 Step-by-step
+    label = 👣 Step-by-step
     instruction
       Rewrite the following text as step-by-step instructions or stages where appropriate.
       {|}
@@ -5167,7 +5167,7 @@ modes
 
 // BATCH 2: BDSM & Kink category
   shibari
-    label = 🪢 Shibari
+    label = ㊙️ Shibari
     instruction
       Rewrite the following text emphasizing Japanese rope bondage with artistic, intricate ties.
       {|}
@@ -5182,7 +5182,7 @@ modes
     hideStartWith = true
 
   suspension
-    label = 🪝 Suspension
+    label = 🧶 Suspension
     instruction
       Rewrite the following text emphasizing suspension bondage with ropes or restraints lifting the body.
       {|}
@@ -5653,7 +5653,7 @@ modes
     hideStartWith = true
 
   rigger
-    label = 🪢 Rigger
+    label = 🧶 Rigger
     instruction
       Rewrite the following text from the perspective of someone skilled in rope bondage (rigger).
       {|}
@@ -5668,7 +5668,7 @@ modes
     hideStartWith = true
 
   service
-    label = 🫖 Service
+    label = 🧎 Service
     instruction
       Rewrite the following text emphasizing service submission and acts of devotion.
       {|}
@@ -6413,7 +6413,7 @@ modes
     hideStartWith = true
 
   mummification
-    label = 🪦 Mummification
+    label = 🧻👳🏻‍♀️ Mummification
     instruction
       Rewrite the following text emphasizing full-body wrapping and sensory restriction.
       {|}
@@ -6428,7 +6428,7 @@ modes
     hideStartWith = true
 
   stocks
-    label = 🪵 Stocks
+    label = 🙆 Stocks
     instruction
       Rewrite the following text emphasizing medieval-style stocks restraining head and hands.
       {|}
@@ -6443,7 +6443,7 @@ modes
     hideStartWith = true
 
   strap
-    label = 🪢 Strap
+    label = 🧤🙆 Strap
     instruction
       Rewrite the following text emphasizing leather or fabric straps for restraint.
       {|}
