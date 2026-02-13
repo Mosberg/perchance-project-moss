@@ -30,8 +30,8 @@ selectLeaf = {import:select-leaf-plugin}
 fullscreenButton = {import:fullscreen-button-plugin}
 aiText = {import:ai-text-plugin}
 upload = {import:upload-plugin}
-prompt2 = {import:prompt2-plugin}
-t2iStyles = {import:t2i-styles} // this wasn't originally an "official" part of this framework, but it is now because i'm using it for the character chat feature under the condition that there's an artStyle user input specified
+prompt2 = {import:prompt2-plugin-moss}
+t2iStyles = {import:t2i-styles-moss} // this wasn't originally an "official" part of this framework, but it is now because i'm using it for the character chat feature under the condition that there's an artStyle user input specified
 tabbedCommentsPlugin = {import:tabbed-comments-plugin-v1}
 createMediaGalleryPlugin = {import:create-media-gallery-plugin}
 

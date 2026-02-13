@@ -1,4 +1,4 @@
-generateHTML = {import:t2i-framework-plugin-v2}  // <-- this is a little DIY 'framework' plugin that itself imports the text-to-image plugin and generates the user interface using the settings below
+generateHTML = {import:t2i-framework-plugin-moss}  // <-- this is a little DIY 'framework' plugin that itself imports the text-to-image plugin and generates the user interface using the settings below
 
 $meta
   title = AI Character Generator Moss (free, no sign-up, unlimited)
