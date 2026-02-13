@@ -1,12 +1,11 @@
 # Perchance Project Moss
 
-A collection of Perchance generators, a text-to-image framework plugin, and a VS Code extension that adds Perchance language support and utilities.
+A collection of Perchance generators, a text-to-image framework plugin.
 
 ## Repository layout
 
 - generators/ - Perchance generators (HTML + list files)
 - plugins/ - Perchance plugins used by generators
-- extension/ - VS Code extension for Perchance language support
 - characters/ - character prompt templates and profiles
 - docs/ - miscellaneous notes and links
 - .github/ - Copilot instructions and project indexes
@@ -41,39 +40,6 @@ See .github/remote-index.md for additional live links and editing URLs.
   - Live: https://perchance.org/t2i-framework-plugin-moss
 
 The text-to-image generator uses the framework plugin (t2i-framework-plugin-v2) to generate the HTML interface from the list-side settings.
-
-## VS Code extension
-
-The extension in extension/ provides:
-
-- Perchance language registration for .perchance and .prch
-- Formatting and diagnostics for common list errors
-- Commands for plugin insertion, generator creation, and list folding
-- Snippets for Perchance lists and imports
-
-Key files:
-
-- extension/extension.js - extension logic
-- extension/package.json - contribution points and commands
-- extension/data/plugins.json - plugin catalog used by the Manage Plugins command
-- extension/data/templates.json - generator templates
-
-### Extension development
-
-1. Open extension/ in VS Code.
-2. Install dependencies:
-
-```bash
-npm install
-```
-
-3. Run the extension with the VS Code debugger (Run and Debug) or press F5.
-4. Lint or test from the extension folder:
-
-```bash
-npm run lint
-npm test
-```
 
 ## Editing Perchance generators
 
