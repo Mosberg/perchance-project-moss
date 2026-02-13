@@ -52,6 +52,11 @@
 [AI Pokemon Generator Moss HTML](../generators/ai-pokemon-generator-moss/ai-pokemon-generator-moss.html)
 [AI Pokemon Generator Moss List](../generators/ai-pokemon-generator-moss/ai-pokemon-generator-moss.perchance)
 
+[AI Text Converter and Rewriter Moss NSFW](https://perchance.org/ai-text-converter-and-rewriter-moss-nsfw)
+[AI Text Converter and Rewriter Moss NSFW Edit](https://perchance.org/ai-text-converter-and-rewriter-moss-nsfw#edit)
+[AI Text Converter and Rewriter Moss NSFW HTML](../generators/ai-text-converter-and-rewriter-moss-nsfw/ai-text-converter-and-rewriter-moss-nsfw.html)
+[ AI Text Converter and Rewriter Moss NSFW List](../generators/ai-text-converter-and-rewriter-moss-nsfw/ai-text-converter-and-rewriter-moss-nsfw.perchance)
+
 [AI Text Rewriter Moss](https://perchance.org/ai-text-rewriter-moss)
 [AI Text Rewriter Moss Edit](https://perchance.org/ai-text-rewriter-moss#edit)
 [AI Text Rewriter Moss HTML](../generators/ai-text-rewriter-moss/ai-text-rewriter-moss.html)
