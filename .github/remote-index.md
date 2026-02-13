@@ -39,6 +39,12 @@
 [AI Image Generator Moss](https://perchance.org/ai-text-to-image-generator-moss)
 [AI Image Generator Moss Edit](https://perchance.org/ai-text-to-image-generator-moss#edit)
 
+[AI Chat Moss](https://perchance.org/ai-chat-moss)
+[AI Chat Moss Edit](https://perchance.org/ai-chat-moss#edit)
+
+[AI Character Chat Moss](https://perchance.org/ai-character-chat-moss)
+[AI Character Chat Moss Edit](https://perchance.org/ai-character-chat-moss#edit)
+
 # Moss Plugin Links
 
 [T2i Framework Plugin Moss](https://perchance.org/t2i-framework-plugin-moss)
