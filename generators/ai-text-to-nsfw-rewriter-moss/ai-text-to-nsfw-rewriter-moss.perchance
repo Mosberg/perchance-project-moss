@@ -1,0 +1,234 @@
+ai = {import:ai-text-plugin}
+
+$meta
+  title = AI Text to NSFW Rewriter Moss (free, no sign-up, unlimited)
+  description = Combine multiple adult rewriting modes at once. Rewrite text into explicit, erotic, BDSM, or romantic styles with a single click. Free, no signup, no daily limits.
+
+settings
+  instruction() =>
+    let instructionText = selectedInstructionEl && selectedInstructionEl.value
+      ? selectedInstructionEl.value
+      : "";
+    return instructionText.replace(/<<<userInputText>>>/g, inputTextEl.value);
+  startWith = OUTPUT TEXT:\n
+  hideStartWith = true
+  outputTo = [responseEl]
+  onChunk() =>
+    if (responseEl.scrollTop + responseEl.offsetHeight > responseEl.scrollHeight - 60) {
+      responseEl.scrollTop = responseEl.scrollHeight;
+    }
+  onStart() =>
+    responseDeleteBtn.style.display = '';
+    responseDeleteBtn.dataset.mode = 'delete';
+    generateBtn.disabled = true;
+    continueBtn.disabled = true;
+    bottomContinueBtn.disabled = true;
+    retryBtn.disabled = true;
+  onFinish() =>
+    generateBtn.disabled = false;
+    continueBtn.disabled = false;
+    bottomContinueBtn.disabled = false;
+    retryBtn.disabled = false;
+    loaderEl.innerHTML = "";
+    localStorage.response = responseEl.value;
+  render = [null]
+
+async generate() =>
+  window.responseContentBeforeLastGenerate = responseEl.value;
+  let pendingObj = ai(settings);
+  stopBtn.style.display = "";
+  bottomStopBtn.style.display = "";
+  function stopClickHandler() {
+    pendingObj.stop();
+    stopBtn.style.display = "none";
+    bottomStopBtn.style.display = "none";
+  };
+  stopBtn.onclick = stopClickHandler;
+  bottomStopBtn.onclick = stopClickHandler;
+  loaderEl.innerHTML = pendingObj.loadingIndicatorHtml;
+  continueBtn.disabled = false;
+  bottomContinueBtn.disabled = false;
+  retryBtn.disabled = false;
+  generateBtn.textContent = 'regenerate';
+  let data = await pendingObj.onFinishPromise;
+  stopBtn.style.display = "none";
+  bottomStopBtn.style.display = "none";
+
+modes
+// Number 1
+  custom
+    label = 🛠️ 𝗖𝘂𝘀𝘁𝗼𝗺
+    category = Custom
+    instruction = Apply custom rewriting instructions as specified by the user.
+
+// Number 2
+  strapon
+    label = 🍆 Strapon Sex
+    category = Toys & Role Reversal
+    instruction
+      Rewrite this to focus on strap-on sex specifically. Emphasize the woman penetrating, the man being filled, the power reversal, and the satisfaction of both partners in strap-on scenarios.
+      {|}
+      INPUT TEXT:
+      <<<userInputText>>>
+      {|}
+      ---
+      Respond with a version featuring strap-on sex and female-led penetration.
+      $output = [this.joinItems("\n")]
+    startWith = OUTPUT TEXT:\n
+
+    hideStartWith = true
+
+// Number 3
+  dominantWoman
+    label = 👑 Dominant Woman
+    category = Power Dynamic
+    instruction
+      Rewrite this to feature a dominant woman/submissive man dynamic. Emphasize female domination, the man's submission, being controlled by a woman, and worshipping a female dominant.
+      {|}
+      INPUT TEXT:
+      <<<userInputText>>>
+      {|}
+      ---
+      Respond with a version featuring dominant women and submissive men dynamics.
+      $output = [this.joinItems("\n")]
+    startWith = OUTPUT TEXT:\n
+
+    hideStartWith = true
+
+// Number 4
+  rimjob
+    label = 👅 Rimjob
+    category = Oral Play
+    instruction
+      Rewrite this to feature rimming/analingus - licking the anus. Emphasize tongue work, the taboo, the sensations, and the intimacy of rimming.
+      {|}
+      INPUT TEXT:
+      <<<userInputText>>>
+      {|}
+      ---
+      Respond with a version featuring rimming, analingus, and ass eating.
+      $output = [this.joinItems("\n")]
+    startWith = OUTPUT TEXT:\n
+
+    hideStartWith = true
+
+// Number 5
+  asslicking
+    label = 👅 Ass Licking
+    category = Oral Play
+    instruction
+      Rewrite this to feature ass licking and eating ass. Emphasize the sensations, the worship of the ass, the taboo nature, and the pleasure of ass play with tongue.
+      {|}
+      INPUT TEXT:
+      <<<userInputText>>>
+      {|}
+      ---
+      Respond with a version featuring ass licking, eating ass, and ass worship.
+      $output = [this.joinItems("\n")]
+    startWith = OUTPUT TEXT:\n
+
+    hideStartWith = true
+
+// Number 6
+  faceSitting
+    label = 🪑 Face Sitting
+    category = Power Dynamic
+    instruction
+      Rewrite this to feature face sitting - sitting on someone's face for oral stimulation. Emphasize the dominance, the submission, being suffocated, and the intimacy of the act.
+      {|}
+      INPUT TEXT:
+      <<<userInputText>>>
+      {|}
+      ---
+      Respond with a version featuring face sitting and oral domination.
+      $output = [this.joinItems("\n")]
+    startWith = OUTPUT TEXT:\n
+
+    hideStartWith = true
+
+// Number 7
+  prostate
+    label = 🎯 Prostate
+    category = Anal Focus
+    instruction
+      Rewrite this to focus on prostate stimulation and milking. Emphasize the unique pleasure of prostate play, the internal sensations, and the intense orgasms from prostate stimulation.
+      {|}
+      INPUT TEXT:
+      <<<userInputText>>>
+      {|}
+      ---
+      Respond with a version featuring prostate play, milking, and male internal stimulation.
+      $output = [this.joinItems("\n")]
+    startWith = OUTPUT TEXT:\n
+
+    hideStartWith = true
+
+// Number 8
+  vibrator
+    label = 🔀 Vibrator
+    category = Toys & Role Reversal
+    instruction
+      Rewrite this to feature vibrator use - using vibrating toys for pleasure. Emphasize the buzzing sensations, the intensity, building pleasure with vibrations, and orgasms from vibrator use.
+      {|}
+      INPUT TEXT:
+      <<<userInputText>>>
+      {|}
+      ---
+      Respond with a version featuring vibrator use and the sensations of vibrations.
+      $output = [this.joinItems("\n")]
+    startWith = OUTPUT TEXT:\n
+
+    hideStartWith = true
+
+// Number 9
+  dildo
+    label = 🍆 Dildo
+    category = Toys & Role Reversal
+    instruction
+      Rewrite this to feature dildo use - using dildos for penetration and pleasure. Emphasize the sensations, the penetration, riding a dildo, and the pleasure of synthetic cocks.
+      {|}
+      INPUT TEXT:
+      <<<userInputText>>>
+      {|}
+      ---
+      Respond with a version featuring dildo use and pleasure from dildos.
+      $output = [this.joinItems("\n")]
+    startWith = OUTPUT TEXT:\n
+
+    hideStartWith = true
+
+// Number 10
+  pegging
+    label = 🍆 Pegging
+    category = Toys & Role Reversal
+    instruction
+      Rewrite this to feature pegging - a woman penetrating a man anally with a strap-on. Emphasize role reversal, the man being penetrated and vulnerable, the woman being in control, and the power exchange.
+      {|}
+      INPUT TEXT:
+      <<<userInputText>>>
+      {|}
+      ---
+      Respond with a version featuring pegging and female-led anal penetration of men.
+      $output = [this.joinItems("\n")]
+    startWith = OUTPUT TEXT:\n
+
+    hideStartWith = true
+
+generateModesHtml() =>
+  return modes.selectAll.map(m => {
+    let instructionStr = "";
+    if (m.instruction) {
+      if (typeof m.instruction === 'string') {
+        instructionStr = m.instruction;
+      } else if (typeof m.instruction === 'object' && m.instruction.$output) {
+        instructionStr = m.instruction.joinItems ? m.instruction.joinItems("\n") : m.instruction.toString();
+      } else {
+        instructionStr = m.instruction.toString();
+      }
+    }
+    return `<option value="${m.getName}"` +
+      ` data-label="${m.label || m.getName}"` +
+      ` data-category="${m.category || 'Uncategorized'}"` +
+      ` data-instruction="${instructionStr.replace(/"/g, '&quot;').replace(/\n/g, '\\n')}">` +
+      `${m.label || m.getName}</option>`;
+  }).join("");
