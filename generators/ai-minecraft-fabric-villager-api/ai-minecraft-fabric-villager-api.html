@@ -1,0 +1,726 @@
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap"
+  rel="stylesheet"
+/>
+
+<h1>AI Minecraft Fabric Villager API</h1>
+<p class="subtitle">
+  Generate a split-source API spec for Village and Villager AI that fits Minecraft 1.21.11 and
+  Fabric Loader 0.18.4.
+</p>
+
+<div class="shell">
+  <section class="card">
+    <div class="card-title">Project</div>
+    <div class="grid">
+      <label>
+        Mod ID
+        <input id="modIdEl" type="text" value="rotv" />
+      </label>
+      <label>
+        Base Package
+        <input id="basePackageEl" type="text" value="dk.mosberg" />
+      </label>
+      <label>
+        API Name
+        <input id="apiNameEl" type="text" value="RotvVillagerAIApi" />
+      </label>
+      <label>
+        Mod Version
+        <input id="modVersionEl" type="text" value="1.0.0" />
+      </label>
+      <label>
+        Minecraft Version
+        <input id="mcVersionEl" type="text" value="1.21.11" />
+      </label>
+      <label>
+        Fabric Loader
+        <input id="fabricLoaderEl" type="text" value="0.18.4" />
+      </label>
+      <label>
+        Yarn Mappings
+        <input id="yarnMappingsEl" type="text" value="1.21.11+build.4" />
+      </label>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="card-title">Mod Metadata</div>
+    <div class="grid">
+      <label>
+        Mod Name
+        <input id="modNameEl" type="text" value="Rise of the Villagers" />
+      </label>
+      <label>
+        Mod Author
+        <input id="modAuthorEl" type="text" value="Mosberg" />
+      </label>
+      <label>
+        Maven Group
+        <input id="mavenGroupEl" type="text" value="dk.mosberg" />
+      </label>
+      <label>
+        Archives Base Name
+        <input id="archivesBaseNameEl" type="text" value="rotv" />
+      </label>
+      <label>
+        Mod Homepage
+        <input id="modHomepageEl" type="text" value="https://mosberg.github.io/rotv" />
+      </label>
+      <label>
+        Mod Sources
+        <input id="modSourcesEl" type="text" value="https://github.com/Mosberg/rotv" />
+      </label>
+      <label>
+        Mod Issues
+        <input id="modIssuesEl" type="text" value="https://github.com/Mosberg/rotv/issues" />
+      </label>
+      <label>
+        Mod License
+        <input id="modLicenseEl" type="text" value="MIT" />
+      </label>
+    </div>
+    <label>
+      Mod Description
+      <textarea id="modDescriptionEl">
+*Rise of the Villagers* transforms villagers from passive background NPCs into a dynamic, evolving society with intelligence, ambition, and agency. Villages become living settlements with politics, professions, technology, defense strategies, and player-influenced development paths. The mod aims to make villagers feel like a true civilization that grows, adapts, and sometimes even challenges the player.
+      </textarea>
+    </label>
+  </section>
+
+  <section class="card">
+    <div class="card-title">Entrypoints</div>
+    <div class="grid">
+      <label>
+        Main Entrypoint
+        <input id="entrypointMainEl" type="text" value="dk.mosberg.RotV" />
+      </label>
+      <label>
+        Client Entrypoint
+        <input id="entrypointClientEl" type="text" value="dk.mosberg.client.RotVClient" />
+      </label>
+      <label>
+        Mod Menu Entrypoint
+        <input id="entrypointModmenuEl" type="text" value="dk.mosberg.client.modmenu.RotVModMenu" />
+      </label>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="card-title">Build Versions</div>
+    <div class="grid">
+      <label>
+        Fabric API
+        <input id="fabricApiVersionEl" type="text" value="0.141.3+1.21.11" />
+      </label>
+      <label>
+        Loom Version
+        <input id="loomVersionEl" type="text" value="1.15-SNAPSHOT" />
+      </label>
+      <label>
+        Gson Version
+        <input id="gsonVersionEl" type="text" value="2.13.2" />
+      </label>
+      <label>
+        Annotations Version
+        <input id="annotationsVersionEl" type="text" value="26.0.2" />
+      </label>
+      <label>
+        SLF4J Version
+        <input id="slf4jVersionEl" type="text" value="2.0.17" />
+      </label>
+      <label>
+        JUnit Version
+        <input id="junitVersionEl" type="text" value="6.0.2" />
+      </label>
+      <label>
+        Mod Menu Version
+        <input id="modmenuVersionEl" type="text" value="17.0.0-beta.2" />
+      </label>
+      <label>
+        Cloth Config Version
+        <input id="clothConfigVersionEl" type="text" value="21.11.153" />
+      </label>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="card-title">Architecture</div>
+    <div class="stack">
+      <div class="row">
+        <label class="check">
+          <input id="villageSourceEl" type="checkbox" checked />
+          Village source module
+        </label>
+        <label class="check">
+          <input id="villagerSourceEl" type="checkbox" checked />
+          Villager source module
+        </label>
+        <label class="check">
+          <input id="sharedSourceEl" type="checkbox" checked />
+          Shared core module
+        </label>
+      </div>
+      <div class="grid">
+        <label>
+          Village Package
+          <input id="villagePackageEl" type="text" value="dk.mosberg.village" />
+        </label>
+        <label>
+          Villager Package
+          <input id="villagerPackageEl" type="text" value="dk.mosberg.villager" />
+        </label>
+        <label>
+          Core Package
+          <input id="corePackageEl" type="text" value="dk.mosberg.core" />
+        </label>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="card-title">Preset Templates</div>
+    <div class="grid">
+      <label>
+        Preset
+        <select id="presetEl">
+          <option value="none" selected>None</option>
+          <option value="behavior">Behavior-first API</option>
+          <option value="data">Data-driven config heavy</option>
+          <option value="performance">Performance-first</option>
+        </select>
+      </label>
+      <label>
+        Apply preset to toggles
+        <button type="button" onclick="applyPreset(presetEl.value)">Apply</button>
+      </label>
+    </div>
+    <p class="preset-note">
+      Presets adjust feature emphasis and add focused guidance for the AI output.
+    </p>
+    <div class="preset-summary" id="presetSummaryEl"></div>
+  </section>
+
+  <section class="card">
+    <div class="card-title">Features</div>
+    <div class="grid features">
+      <label class="check">
+        <input id="featureBehaviorsEl" type="checkbox" checked />
+        Behaviors
+      </label>
+      <label class="check">
+        <input id="featureLogicEl" type="checkbox" checked />
+        Logic systems
+      </label>
+      <label class="check">
+        <input id="featureMechanicsEl" type="checkbox" checked />
+        Mechanics
+      </label>
+      <label class="check">
+        <input id="featureFunctionsEl" type="checkbox" checked />
+        Functions
+      </label>
+      <label class="check">
+        <input id="featureMethodsEl" type="checkbox" checked />
+        Methods
+      </label>
+      <label class="check">
+        <input id="featureConfigEl" type="checkbox" checked />
+        Config options
+      </label>
+      <label class="check">
+        <input id="featureSettingsEl" type="checkbox" checked />
+        Settings
+      </label>
+      <label class="check">
+        <input id="featureExtensibilityEl" type="checkbox" checked />
+        Extensible components
+      </label>
+      <label class="check">
+        <input id="featureDiagnosticsEl" type="checkbox" />
+        Diagnostics hooks
+      </label>
+      <label class="check">
+        <input id="featureExamplesEl" type="checkbox" checked />
+        Example usage
+      </label>
+    </div>
+    <div class="grid">
+      <label>
+        Detail Level
+        <select id="detailLevelEl">
+          <option value="concise">Concise</option>
+          <option value="balanced" selected>Balanced</option>
+          <option value="exhaustive">Exhaustive</option>
+        </select>
+      </label>
+      <label>
+        Output Style
+        <select id="outputStyleEl">
+          <option value="hybrid" selected>Hybrid (structured lists + examples)</option>
+          <option value="structured">Structured lists only</option>
+          <option value="examples">Examples only</option>
+        </select>
+      </label>
+      <label>
+        Include Code Stubs
+        <select id="includeStubsEl">
+          <option value="yes" selected>Yes</option>
+          <option value="no">No</option>
+        </select>
+      </label>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="card-title">Notes</div>
+    <textarea
+      id="notesEl"
+      placeholder="Add any constraints: networking, data-driven configs, performance budgets, or gameplay hooks."
+    ></textarea>
+  </section>
+
+  <section class="card">
+    <div class="card-title">Generate</div>
+    <div class="row">
+      <button id="generateBtn" onclick="generate()">Generate API</button>
+      <button id="continueBtn" onclick="generate()" disabled>Continue</button>
+      <button id="stopBtn" onclick="" style="display: none">Stop</button>
+      <span id="loaderEl" class="loader"></span>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="card-title">Output</div>
+    <div class="output-shell">
+      <textarea
+        id="responseEl"
+        placeholder="The AI output will appear here. You can edit it, then press Continue to expand it."
+      ></textarea>
+      <div class="output-actions">
+        <button id="copyBtn" onclick="navigator.clipboard.writeText(responseEl.value)">Copy</button>
+        <button
+          id="clearBtn"
+          onclick="
+            responseEl.value = '';
+            syncResponseState();
+          "
+        >
+          Clear
+        </button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<style>
+  :root {
+    --ink: #111313;
+    --muted: #5f6a6a;
+    --accent: #ff7a18;
+    --accent-2: #ffe04d;
+    --surface: #f7f5f2;
+    --surface-2: #ffffff;
+    --shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+    --radius: 18px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ink: #f5f4ef;
+      --muted: #b6b2a8;
+      --surface: #1b1f21;
+      --surface-2: #23292c;
+      --shadow: 0 15px 35px rgba(0, 0, 0, 0.45);
+    }
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    padding: 2.5rem 1.5rem 4rem;
+    font-family: "Space Grotesk", system-ui, sans-serif;
+    color: var(--ink);
+    background:
+      radial-gradient(circle at top, #fff8eb, transparent 65%),
+      linear-gradient(135deg, #f1f6ff, #fff1dc 60%, #fefbf4);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    body {
+      background:
+        radial-gradient(circle at top, rgba(255, 255, 255, 0.08), transparent 65%),
+        linear-gradient(135deg, #0e1112, #1a1f22 60%, #0d1011);
+    }
+  }
+
+  h1 {
+    margin: 0 auto 0.5rem;
+    text-align: center;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .subtitle {
+    margin: 0 auto 2rem;
+    text-align: center;
+    max-width: 720px;
+    color: var(--muted);
+  }
+
+  .shell {
+    max-width: 980px;
+    margin: 0 auto;
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .card {
+    background: var(--surface);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 1.5rem;
+  }
+
+  .card-title {
+    font-size: 0.95rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--muted);
+    margin-bottom: 1rem;
+  }
+
+  .grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+
+  .stack {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+  }
+
+  label {
+    display: grid;
+    gap: 0.4rem;
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+
+  input,
+  select,
+  textarea,
+  button {
+    font-family: inherit;
+  }
+
+  input,
+  select,
+  textarea {
+    background: var(--surface-2);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    padding: 0.65rem 0.75rem;
+    font-size: 0.95rem;
+    color: var(--ink);
+  }
+
+  textarea {
+    min-height: 120px;
+    resize: vertical;
+  }
+
+  .features {
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  }
+
+  .preset-note {
+    margin: 0.75rem 0 0;
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+
+  .preset-summary {
+    margin-top: 0.75rem;
+    padding: 0.9rem 1rem;
+    border-radius: 12px;
+    background: var(--surface-2);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+
+  .check {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    font-size: 0.9rem;
+  }
+
+  .check input {
+    accent-color: var(--accent);
+  }
+
+  button {
+    border: none;
+    border-radius: 999px;
+    padding: 0.6rem 1.2rem;
+    background: var(--accent);
+    color: #1b1b1b;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+      transform 0.15s ease,
+      box-shadow 0.15s ease;
+  }
+
+  button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+
+  #stopBtn {
+    background: #d9534f;
+    color: #fff;
+  }
+
+  .output-shell {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  #responseEl {
+    min-height: 320px;
+    font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.9rem;
+  }
+
+  .output-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .loader {
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+
+  @media (max-width: 720px) {
+    body {
+      padding: 2rem 1rem 3rem;
+    }
+
+    .card {
+      padding: 1.25rem;
+    }
+  }
+</style>
+
+<script>
+  const fieldIds = [
+    "modIdEl",
+    "basePackageEl",
+    "apiNameEl",
+    "modVersionEl",
+    "mcVersionEl",
+    "fabricLoaderEl",
+    "yarnMappingsEl",
+    "modNameEl",
+    "modDescriptionEl",
+    "modAuthorEl",
+    "modHomepageEl",
+    "modSourcesEl",
+    "modIssuesEl",
+    "modLicenseEl",
+    "mavenGroupEl",
+    "archivesBaseNameEl",
+    "entrypointMainEl",
+    "entrypointClientEl",
+    "entrypointModmenuEl",
+    "fabricApiVersionEl",
+    "loomVersionEl",
+    "gsonVersionEl",
+    "annotationsVersionEl",
+    "slf4jVersionEl",
+    "junitVersionEl",
+    "modmenuVersionEl",
+    "clothConfigVersionEl",
+    "villageSourceEl",
+    "villagerSourceEl",
+    "sharedSourceEl",
+    "villagePackageEl",
+    "villagerPackageEl",
+    "corePackageEl",
+    "presetEl",
+    "featureBehaviorsEl",
+    "featureLogicEl",
+    "featureMechanicsEl",
+    "featureFunctionsEl",
+    "featureMethodsEl",
+    "featureConfigEl",
+    "featureSettingsEl",
+    "featureExtensibilityEl",
+    "featureDiagnosticsEl",
+    "featureExamplesEl",
+    "detailLevelEl",
+    "outputStyleEl",
+    "includeStubsEl",
+    "notesEl"
+  ];
+
+  const presetSummaries = {
+    none: "Select a preset to preview the emphasis before applying it to your toggles.",
+    behavior:
+      "Behavior-first API: enables exhaustive detail, keeps diagnostics optional, and focuses on behavior scheduling, blackboards, and village-to-villager coordination.",
+    data: "Data-driven config heavy: enables exhaustive detail with schemas, data packs, registries, and migration/versioning guidance.",
+    performance:
+      "Performance-first: balanced detail with diagnostics enabled; focuses on tick budgets, caching, async-safe patterns, and profiling hooks."
+  };
+
+  function updatePresetSummary() {
+    const key = presetEl ? presetEl.value : "none";
+    presetSummaryEl.textContent = presetSummaries[key] || presetSummaries.none;
+  }
+
+  function applyPreset(preset) {
+    const presets = {
+      behavior: {
+        toggles: {
+          featureBehaviorsEl: true,
+          featureLogicEl: true,
+          featureMechanicsEl: true,
+          featureFunctionsEl: true,
+          featureMethodsEl: true,
+          featureConfigEl: true,
+          featureSettingsEl: true,
+          featureExtensibilityEl: true,
+          featureDiagnosticsEl: false,
+          featureExamplesEl: true
+        },
+        detailLevel: "exhaustive",
+        outputStyle: "hybrid",
+        notes:
+          "Emphasize behavior scheduling, blackboard data flow, and emergent village-to-villager coordination."
+      },
+      data: {
+        toggles: {
+          featureBehaviorsEl: true,
+          featureLogicEl: true,
+          featureMechanicsEl: true,
+          featureFunctionsEl: true,
+          featureMethodsEl: true,
+          featureConfigEl: true,
+          featureSettingsEl: true,
+          featureExtensibilityEl: true,
+          featureDiagnosticsEl: false,
+          featureExamplesEl: true
+        },
+        detailLevel: "exhaustive",
+        outputStyle: "hybrid",
+        notes:
+          "Prioritize data-driven configs, JSON schemas, data pack hooks, and registry-based extensibility."
+      },
+      performance: {
+        toggles: {
+          featureBehaviorsEl: true,
+          featureLogicEl: true,
+          featureMechanicsEl: true,
+          featureFunctionsEl: true,
+          featureMethodsEl: true,
+          featureConfigEl: true,
+          featureSettingsEl: true,
+          featureExtensibilityEl: true,
+          featureDiagnosticsEl: true,
+          featureExamplesEl: true
+        },
+        detailLevel: "balanced",
+        outputStyle: "hybrid",
+        notes: "Emphasize tick budgets, caching, async-safe patterns, and profiling hooks."
+      }
+    };
+
+    if (!presets[preset]) return;
+
+    Object.entries(presets[preset].toggles).forEach(([id, value]) => {
+      const el = document.getElementById(id);
+      if (el) el.checked = value;
+    });
+
+    detailLevelEl.value = presets[preset].detailLevel;
+    outputStyleEl.value = presets[preset].outputStyle;
+    if (!notesEl.value.trim()) {
+      notesEl.value = presets[preset].notes;
+    }
+
+    fieldIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      localStorage.setItem(
+        "villagerApi_" + id,
+        el.type === "checkbox" ? String(el.checked) : el.value
+      );
+    });
+  }
+
+  function restoreState() {
+    fieldIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const stored = localStorage.getItem("villagerApi_" + id);
+      if (stored === null) return;
+      if (el.type === "checkbox") {
+        el.checked = stored === "true";
+      } else {
+        el.value = stored;
+      }
+    });
+    syncResponseState();
+  }
+
+  function bindState() {
+    fieldIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.addEventListener("input", () => {
+        localStorage.setItem(
+          "villagerApi_" + id,
+          el.type === "checkbox" ? String(el.checked) : el.value
+        );
+      });
+    });
+  }
+
+  function syncResponseState() {
+    const hasText = responseEl.value.trim().length > 0;
+    continueBtn.disabled = !hasText;
+  }
+
+  responseEl.addEventListener("input", syncResponseState);
+  presetEl.addEventListener("change", updatePresetSummary);
+
+  restoreState();
+  bindState();
+  updatePresetSummary();
+</script>

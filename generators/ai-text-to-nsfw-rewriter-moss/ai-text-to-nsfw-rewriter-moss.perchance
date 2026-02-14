@@ -214,6 +214,158 @@ modes
 
     hideStartWith = true
 
+// number 11
+  submissive
+    label = 🧎 Submissive
+    category = Power Dynamic
+    instruction
+      Your task is to rewrite the following text in an extremely submissive tone while maintaining meaning.
+      {|}
+      INPUT TEXT:
+      <<<userInputText>>>
+      {|}
+      ---
+      Respond with text that sounds deferential, obedient and yielding. Use honorifics, self-deprecating language and soft phrasing where appropriate.
+      $output = [this.joinItems("\n")]
+    startWith = OUTPUT TEXT:\n
+
+    hideStartWith = true
+
+// number 12
+  dominant
+    label = 🎭 Dominant
+    category = Power Dynamic
+    instruction
+      Your task is to rewrite the following text from an authoritative, controlling perspective. Infuse commanding language with undertones of consensual dominance.
+      {|}
+      INPUT TEXT:
+      <<<userInputText>>>
+      {|}
+      ---
+      Respond with text that asserts dominance naturally through imperative phrasing and controlled tone without being abusive.
+      $output = [this.joinItems("\n")]
+    startWith = OUTPUT TEXT:\n
+
+    hideStartWith = true
+
+// number 13
+  bisexual
+    label = 💗 Bisexual
+    category = Sexuality
+    instruction
+      Rewrite this to celebrate attraction to multiple genders. Emphasize the fluidity of desire, being drawn to different types of people, and the freedom that comes with not limiting sexuality. Show appreciation for different expressions of beauty and attraction.
+      {|}
+      INPUT TEXT:
+      <<<userInputText>>>
+      {|}
+      ---
+      Respond with a version that emphasizes bisexual desire and attraction across genders.
+      $output = [this.joinItems("\n")]
+    startWith = OUTPUT TEXT:\n
+
+    hideStartWith = true
+
+// number 14
+  anal
+    label = 🍑 Anal
+    category = Anal Focus
+    instruction
+      Rewrite this to feature anal sex prominently. Emphasize penetration, the sensation of anal play, building up to anal sex, and the unique sensations and taboo nature of anal sexuality.
+      {|}
+      INPUT TEXT:
+      <<<userInputText>>>
+      {|}
+      ---
+      Respond with a version featuring anal play and anal sex as central elements.
+      $output = [this.joinItems("\n")]
+    startWith = OUTPUT TEXT:\n
+
+    hideStartWith = true
+
+// number 15
+  breeding
+    label = 🤰 Breeding
+    category = Fantasy
+    instruction
+      Rewrite this to feature breeding/impregnation fantasy. Emphasize fertility, the goal of conception, cumming to breed, the biological drive, and the fantasy of making someone pregnant.
+      {|}
+      INPUT TEXT:
+      <<<userInputText>>>
+      {|}
+      ---
+      Respond with a version featuring breeding fantasies and impregnation themes.
+      $output = [this.joinItems("\n")]
+    startWith = OUTPUT TEXT:\n
+
+    hideStartWith = true
+
+// number 16
+  dildoRiding
+    label = 🏇 Dildo Riding
+    category = Toys & Role Reversal
+    instruction
+      Rewrite this to feature riding a dildo - bouncing on a dildo for pleasure. Emphasize the sensation of penetration, the bouncing, control of depth, and intense pleasure from riding.
+      {|}
+      INPUT TEXT:
+      <<<userInputText>>>
+      {|}
+      ---
+      Respond with a version featuring dildo riding and bouncing on a dildo.
+      $output = [this.joinItems("\n")]
+    startWith = OUTPUT TEXT:\n
+
+    hideStartWith = true
+
+// number 17
+  assWorship
+    label = 🍑 Ass Worship
+    category = Anal Focus
+    instruction
+      Rewrite the following text emphasizing ass worship, rimming, and devoted attention to the ass.
+      {|}
+      INPUT TEXT:
+      <<<userInputText>>>
+      {|}
+      ---
+      Respond with explicit content showing devoted ass worship and oral attention.
+      $output = [this.joinItems("\n")]
+    startWith = OUTPUT TEXT:\n
+
+    hideStartWith = true
+
+// number 18
+  buttplug
+    label = 🔌 Butt Plug
+    category = Anal Focus
+    instruction
+      Rewrite the following text emphasizing wearing or inserting a butt plug.
+      {|}
+      INPUT TEXT:
+      <<<userInputText>>>
+      {|}
+      ---
+      Respond with explicit content showing butt plug use and fullness.
+      $output = [this.joinItems("\n")]
+    startWith = OUTPUT TEXT:\n
+
+    hideStartWith = true
+
+// number 19
+  submission
+    label = 🧎 Submission
+    instruction
+      Rewrite the following text emphasizing mental and psychological submission beyond physical acts.
+      {|}
+      INPUT TEXT:
+      <<<userInputText>>>
+      {|}
+      ---
+      Respond with explicit content showing deep psychological submission and surrender.
+      $output = [this.joinItems("\n")]
+    startWith = OUTPUT TEXT:\n
+
+    hideStartWith = true
+
 generateModesHtml() =>
   return modes.selectAll.map(m => {
     let instructionStr = "";

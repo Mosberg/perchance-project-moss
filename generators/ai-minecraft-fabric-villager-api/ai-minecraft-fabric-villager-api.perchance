@@ -1,0 +1,418 @@
+generateText = {import:ai-text-plugin}
+
+settings
+  instruction() =>
+    return buildInstruction();
+  startWith() =>
+    if (responseEl.value.trim() === "") {
+      return "";
+    }
+    return responseEl.value;
+  hideStartWith = [responseEl.value.trim() === ""]
+  outputTo = [responseEl]
+  onChunk() =>
+    if (responseEl.scrollTop + responseEl.offsetHeight > responseEl.scrollHeight - 60) {
+      responseEl.scrollTop = responseEl.scrollHeight;
+    }
+  onStart() =>
+    generateBtn.disabled = true;
+    continueBtn.disabled = true;
+    stopBtn.style.display = "";
+    loaderEl.innerHTML = "Generating...";
+  onFinish() =>
+    generateBtn.disabled = false;
+    continueBtn.disabled = false;
+    stopBtn.style.display = "none";
+    loaderEl.innerHTML = "";
+
+async generate() =>
+  window.responseContentBeforeLastGenerate = responseEl.value;
+  let pendingObj = generateText(settings);
+  function stopClickHandler() {
+    pendingObj.stop();
+    stopBtn.style.display = "none";
+  }
+  stopBtn.onclick = stopClickHandler;
+  loaderEl.innerHTML = pendingObj.loadingIndicatorHtml;
+  await pendingObj.onFinishPromise;
+  stopBtn.style.display = "none";
+
+
+buildInstruction() =>
+  let features = selectedFeatures();
+  let sources = selectedSources();
+  let detail = detailLevelEl.value || "balanced";
+  let style = outputStyleEl.value || "hybrid";
+  let includeStubs = includeStubsEl.value === "yes";
+  let preset = presetEl ? presetEl.value : "none";
+  let notes = notesEl.value.trim();
+  let modId = modIdEl.value || "rotv";
+  let basePackage = basePackageEl.value || "dk.mosberg";
+  let apiName = apiNameEl.value || "RotvVillagerAIApi";
+  let modVersion = modVersionEl.value || "1.0.0";
+  let modName = modNameEl.value || "Rise of the Villagers";
+  let modDescription = modDescriptionEl.value || "";
+  let modAuthor = modAuthorEl.value || "Mosberg";
+  let modHomepage = modHomepageEl.value || "https://mosberg.github.io/rotv";
+  let modSources = modSourcesEl.value || "https://github.com/Mosberg/rotv";
+  let modIssues = modIssuesEl.value || "https://github.com/Mosberg/rotv/issues";
+  let modLicense = modLicenseEl.value || "MIT";
+  let mavenGroup = mavenGroupEl.value || "dk.mosberg";
+  let archivesBaseName = archivesBaseNameEl.value || "rotv";
+  let entrypointMain = entrypointMainEl.value || "dk.mosberg.RotV";
+  let entrypointClient = entrypointClientEl.value || "dk.mosberg.client.RotVClient";
+  let entrypointModmenu = entrypointModmenuEl.value || "dk.mosberg.client.modmenu.RotVModMenu";
+  let mcVersion = mcVersionEl.value || "1.21.11";
+  let fabricLoader = fabricLoaderEl.value || "0.18.4";
+  let yarnMappings = yarnMappingsEl.value || "1.21.11+build.4";
+  let fabricApiVersion = fabricApiVersionEl.value || "0.141.3+1.21.11";
+  let loomVersion = loomVersionEl.value || "1.15-SNAPSHOT";
+  let gsonVersion = gsonVersionEl.value || "2.13.2";
+  let annotationsVersion = annotationsVersionEl.value || "26.0.2";
+  let slf4jVersion = slf4jVersionEl.value || "2.0.17";
+  let junitVersion = junitVersionEl.value || "6.0.2";
+  let modmenuVersion = modmenuVersionEl.value || "17.0.0-beta.2";
+  let clothConfigVersion = clothConfigVersionEl.value || "21.11.153";
+  let villagePackage = villagePackageEl.value || `${basePackage}.village`;
+  let villagerPackage = villagerPackageEl.value || `${basePackage}.villager`;
+  let corePackage = corePackageEl.value || `${basePackage}.core`;
+  let presetGuidance = presetInstructions(preset);
+  let versioningBlock = buildVersioningBlock({
+    modId,
+    modVersion,
+    modName,
+    modDescription,
+    modAuthor,
+    modHomepage,
+    modSources,
+    modIssues,
+    modLicense,
+    mavenGroup,
+    archivesBaseName,
+    entrypointMain,
+    entrypointClient,
+    entrypointModmenu,
+    mcVersion,
+    yarnMappings,
+    fabricLoader,
+    loomVersion,
+    fabricApiVersion,
+    gsonVersion,
+    annotationsVersion,
+    slf4jVersion,
+    junitVersion,
+    modmenuVersion,
+    clothConfigVersion
+  });
+
+  let lines = [
+    "Create a Perchance-friendly API spec for an AI Minecraft Fabric Villager API.",
+    "It must integrate with a Minecraft " + mcVersion + " Fabric mod using Fabric Loader " + fabricLoader + ",",
+    "and Yarn mappings " + yarnMappings + ". Use Fabric API " + fabricApiVersion + ".",
+    "Use split-source architecture for Village and Villager AI.",
+    "",
+    `Project: modId=${modId}, basePackage=${basePackage}, apiName=${apiName}, version=${modVersion}.`,
+    `Packages: village=${villagePackage}, villager=${villagerPackage}, core=${corePackage}.`,
+    `Sources: ${sources}.`,
+    `Features: ${features}.`,
+    `Detail level: ${detail}. Output style: ${style}.`,
+    preset !== "none" ? `Preset focus: ${preset}. ${presetGuidance}` : "Preset focus: none.",
+    includeStubs
+      ? "Include Java interface/class stubs where helpful."
+      : "Do not include Java stubs; keep to API design and descriptions.",
+    "",
+    "Required sections:",
+    "- Overview and goals",
+    "- Split-source architecture (Village module, Villager module, Core shared)",
+    "- API surface (interfaces, classes, methods, events)",
+    "- Behavior system (scheduling, priorities, blackboard/data)",
+    "- Logic system (decision trees, state machines, rule engine)",
+    "- Mechanics (pathing hooks, POI, profession, trading, gossip)",
+    "- Config and settings (server, client, data pack, config file)",
+    "- Extensibility (registries, tags, callbacks, plugin points)",
+    "- Example usage (init, registering behaviors, config)",
+    "- Integration notes (Fabric lifecycle, networking, thread rules)",
+    "- Fabric lifecycle checklist (init hooks, thread rules, game thread boundaries)",
+    "- File/package layout and module boundaries",
+    "",
+    "Formatting:",
+    "- Use structured lists or JSON-like blocks for key APIs and settings.",
+    "- Include at least one Java code block and one data/config example.",
+    "- Keep the output actionable for mod developers.",
+    "",
+    "Use this exact versioning and metadata in all examples:",
+    versioningBlock
+  ];
+
+  if (notes) {
+    lines.push("", `Additional constraints: ${notes}`);
+  }
+
+  return lines.join("\n");
+
+
+selectedFeatures() =>
+  let features = [];
+  if (featureBehaviorsEl.checked) features.push("Behaviors");
+  if (featureLogicEl.checked) features.push("Logic systems");
+  if (featureMechanicsEl.checked) features.push("Mechanics");
+  if (featureFunctionsEl.checked) features.push("Functions");
+  if (featureMethodsEl.checked) features.push("Methods");
+  if (featureConfigEl.checked) features.push("Config options");
+  if (featureSettingsEl.checked) features.push("Settings");
+  if (featureExtensibilityEl.checked) features.push("Extensible components");
+  if (featureDiagnosticsEl.checked) features.push("Diagnostics hooks");
+  if (featureExamplesEl.checked) features.push("Example usage");
+  if (features.length === 0) return "Behaviors, logic systems, mechanics, functions, methods, config, settings, extensibility";
+  return features.join(", ");
+
+selectedSources() =>
+  let sources = [];
+  if (villageSourceEl.checked) sources.push("Village source module");
+  if (villagerSourceEl.checked) sources.push("Villager source module");
+  if (sharedSourceEl.checked) sources.push("Shared core module");
+  if (sources.length === 0) return "Village source module, Villager source module, Shared core module";
+  return sources.join(", ");
+
+buildVersioningBlock(data) =>
+  let lines = [];
+  let safeDescription = (data.modDescription || "").replace(/\s+/g, " ").replace(/\"/g, "'").trim();
+  lines.push("```properties");
+  lines.push("# --------------------------------------------------------------");
+  lines.push("# Gradle & Performance");
+  lines.push("# --------------------------------------------------------------");
+  lines.push("org.gradle.jvmargs=-Xmx4G -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200");
+  lines.push("org.gradle.parallel=true");
+  lines.push("org.gradle.configuration-cache=false");
+  lines.push("");
+  lines.push("# --------------------------------------------------------------");
+  lines.push("# Minecraft / Fabric / Loom");
+  lines.push("# --------------------------------------------------------------");
+  lines.push("minecraft_version=" + data.mcVersion);
+  lines.push("yarn_mappings=" + data.yarnMappings);
+  lines.push("loader_version=" + data.fabricLoader);
+  lines.push("loom_version=" + data.loomVersion);
+  lines.push("");
+  lines.push("# --------------------------------------------------------------");
+  lines.push("# Mod Metadata and Version Configuration");
+  lines.push("# --------------------------------------------------------------");
+  lines.push("maven_group=" + data.mavenGroup);
+  lines.push("archives_base_name=" + data.archivesBaseName);
+  lines.push("");
+  lines.push("mod_id=" + data.modId);
+  lines.push("mod_version=" + data.modVersion);
+  lines.push("mod_name=" + data.modName);
+  lines.push("mod_description=" + safeDescription);
+  lines.push("mod_author=" + data.modAuthor);
+  lines.push("mod_homepage=" + data.modHomepage);
+  lines.push("mod_sources=" + data.modSources);
+  lines.push("mod_issues=" + data.modIssues);
+  lines.push("mod_license=" + data.modLicense);
+  lines.push("");
+  lines.push("# --------------------------------------------------------------");
+  lines.push("# Entrypoints (fully-qualified class names)");
+  lines.push("# --------------------------------------------------------------");
+  lines.push("mod_entrypoint_main=" + data.entrypointMain);
+  lines.push("mod_entrypoint_client=" + data.entrypointClient);
+  lines.push("mod_entrypoint_modmenu=" + data.entrypointModmenu);
+  lines.push("");
+  lines.push("# --------------------------------------------------------------");
+  lines.push("# Dependencies");
+  lines.push("# --------------------------------------------------------------");
+  lines.push("fabric_api_version=" + data.fabricApiVersion);
+  lines.push("");
+  lines.push("gson_version=" + data.gsonVersion);
+  lines.push("annotations_version=" + data.annotationsVersion);
+  lines.push("slf4j_version=" + data.slf4jVersion);
+  lines.push("junit_version=" + data.junitVersion);
+  lines.push("modmenu_version=" + data.modmenuVersion);
+  lines.push("cloth_config_version=" + data.clothConfigVersion);
+  lines.push("```");
+  lines.push("");
+  lines.push("```gradle");
+  lines.push("pluginManagement {");
+  lines.push("  repositories {");
+  lines.push("    maven {");
+  lines.push("      name = \"FabricMC\"");
+  lines.push("      url = \"https://maven.fabricmc.net/\"");
+  lines.push("    }");
+  lines.push("    mavenCentral()");
+  lines.push("    gradlePluginPortal()");
+  lines.push("  }");
+  lines.push("}");
+  lines.push("");
+  lines.push("rootProject.name = \"" + data.archivesBaseName + "\"");
+  lines.push("```");
+  lines.push("");
+  lines.push("```gradle");
+  lines.push("plugins {");
+  lines.push('  id "net.fabricmc.fabric-loom-remap" version "' + "$" + '{loom_version}"');
+  lines.push("  id 'maven-publish'");
+  lines.push("  id 'java'");
+  lines.push("}");
+  lines.push("");
+  lines.push("version = project.mod_version");
+  lines.push("group = project.maven_group");
+  lines.push("");
+  lines.push("base {");
+  lines.push("  archivesName = project.archives_base_name");
+  lines.push("}");
+  lines.push("");
+  lines.push("repositories {");
+  lines.push("  mavenCentral()");
+  lines.push("  maven {");
+  lines.push("    name = \"FabricMC\"");
+  lines.push("    url = \"https://maven.fabricmc.net/\"");
+  lines.push("  }");
+  lines.push("  maven {");
+  lines.push("    name = \"TerraformersMC\"");
+  lines.push("    url = \"https://maven.terraformersmc.com/releases\"");
+  lines.push("  }");
+  lines.push("  maven {");
+  lines.push("    name = \"Shedaniel\"");
+  lines.push("    url = \"https://maven.shedaniel.me/\"");
+  lines.push("  }");
+  lines.push("}");
+  lines.push("");
+  lines.push("loom {");
+  lines.push("  splitEnvironmentSourceSets()");
+  lines.push("");
+  lines.push("  mods {");
+  lines.push("    create(project.mod_id) {");
+  lines.push("      sourceSet sourceSets.main");
+  lines.push("      sourceSet sourceSets.client");
+  lines.push("    }");
+  lines.push("  }");
+  lines.push("}");
+  lines.push("");
+  lines.push("dependencies {");
+  lines.push("  // Core Minecraft + Fabric");
+  lines.push('  minecraft "com.mojang:minecraft:' + "$" + '{project.minecraft_version}"');
+  lines.push('  mappings "net.fabricmc:yarn:' + "$" + '{project.yarn_mappings}:v2"');
+  lines.push('  modImplementation "net.fabricmc:fabric-loader:' + "$" + '{project.loader_version}"');
+  lines.push('  modImplementation "net.fabricmc.fabric-api:fabric-api:' + "$" + '{project.fabric_api_version}"');
+  lines.push("");
+  lines.push("  // Gson (bundled)");
+  lines.push('  implementation "com.google.code.gson:gson:' + "$" + '{project.gson_version}"');
+  lines.push('  include "com.google.code.gson:gson:' + "$" + '{project.gson_version}"');
+  lines.push("");
+  lines.push("  // Annotations (compile-only)");
+  lines.push('  compileOnly "org.jetbrains:annotations:' + "$" + '{project.annotations_version}"');
+  lines.push("");
+  lines.push("  // Testing");
+  lines.push('  testImplementation platform("org.junit:junit-bom:' + "$" + '{project.junit_version}")');
+  lines.push("  testImplementation \"org.junit.jupiter:junit-jupiter\"");
+  lines.push("  testImplementation \"org.junit.jupiter:junit-jupiter-params\"");
+  lines.push("  testRuntimeOnly \"org.junit.platform:junit-platform-launcher\"");
+  lines.push("");
+  lines.push("  // Mod Menu (addon, not bundled)");
+  lines.push('  modImplementation "com.terraformersmc:modmenu:' + "$" + '{project.modmenu_version}"');
+  lines.push("");
+  lines.push("  // Cloth Config (config UI)");
+  lines.push('  modImplementation "me.shedaniel.cloth:cloth-config-fabric:' + "$" + '{project.cloth_config_version}"');
+  lines.push("}");
+  lines.push("");
+  lines.push("tasks.processResources {");
+  lines.push("  // We template *all* relevant fields into fabric.mod.json");
+  lines.push("  inputs.properties(");
+  lines.push("    \"version\"              : project.mod_version,");
+  lines.push("    \"mod_id\"               : project.mod_id,");
+  lines.push("    \"mod_name\"             : project.mod_name,");
+  lines.push("    \"mod_description\"      : project.mod_description,");
+  lines.push("    \"mod_author\"           : project.mod_author,");
+  lines.push("    \"mod_homepage\"         : project.mod_homepage,");
+  lines.push("    \"mod_sources\"          : project.mod_sources,");
+  lines.push("    \"mod_issues\"           : project.mod_issues,");
+  lines.push("    \"mod_license\"          : project.mod_license,");
+  lines.push("    \"mod_entrypoint_main\"  : project.mod_entrypoint_main,");
+  lines.push("    \"mod_entrypoint_client\"  : project.mod_entrypoint_client,");
+  lines.push("    \"mod_entrypoint_modmenu\" : project.mod_entrypoint_modmenu");
+  lines.push("  )");
+  lines.push("");
+  lines.push("  filesMatching(\"fabric.mod.json\") {");
+  lines.push("    expand(inputs.properties)");
+  lines.push("  }");
+  lines.push("}");
+  lines.push("");
+  lines.push("tasks.withType(JavaCompile).configureEach {");
+  lines.push("  options.release = 21");
+  lines.push("}");
+  lines.push("");
+  lines.push("java {");
+  lines.push("  withSourcesJar()");
+  lines.push("  sourceCompatibility = JavaVersion.VERSION_21");
+  lines.push("  targetCompatibility = JavaVersion.VERSION_21");
+  lines.push("}");
+  lines.push("");
+  lines.push("jar {");
+  lines.push("  inputs.property \"archivesName\", project.base.archivesName.get()");
+  lines.push("");
+  lines.push("  from(\"LICENSE\") {");
+  lines.push('    rename { name -> "' + "$" + '{name}_' + "$" + '{inputs.properties.archivesName}" }');
+  lines.push("  }");
+  lines.push("}");
+  lines.push("");
+  lines.push("tasks.test {");
+  lines.push("  useJUnitPlatform()");
+  lines.push("}");
+  lines.push("");
+  lines.push("publishing {");
+  lines.push("  publications {");
+  lines.push("    create(\"mavenJava\", MavenPublication) {");
+  lines.push("      artifactId = project.archives_base_name");
+  lines.push("      from components.java");
+  lines.push("    }");
+  lines.push("  }");
+  lines.push("");
+  lines.push("  repositories {");
+  lines.push("    // Add Maven targets if/when you publish.");
+  lines.push("  }");
+  lines.push("}");
+  lines.push("```");
+  lines.push("");
+  lines.push("```json");
+  lines.push("{");
+  lines.push("  \"schemaVersion\": 1,");
+  lines.push('  "id": "' + "$" + '{mod_id}",');
+  lines.push('  "version": "' + "$" + '{version}",');
+  lines.push('  "name": "' + "$" + '{mod_name}",');
+  lines.push('  "description": "' + "$" + '{mod_description}",');
+  lines.push('  "authors": ["' + "$" + '{mod_author}"],');
+  lines.push("  \"contact\": {");
+  lines.push('    "homepage": "' + "$" + '{mod_homepage}",');
+  lines.push('    "sources": "' + "$" + '{mod_sources}",');
+  lines.push('    "issues": "' + "$" + '{mod_issues}"');
+  lines.push("  },");
+  lines.push('  "license": "' + "$" + '{mod_license}",');
+  lines.push("  \"icon\": \"icon.png\",");
+  lines.push("  \"environment\": \"*\",");
+  lines.push("  \"entrypoints\": {");
+  lines.push('    "main": ["' + "$" + '{mod_entrypoint_main}"],');
+  lines.push('    "client": ["' + "$" + '{mod_entrypoint_client}"],');
+  lines.push('    "modmenu": ["' + "$" + '{mod_entrypoint_modmenu}"]');
+  lines.push("  },");
+  lines.push('  "mixins": ["' + "$" + '{mod_id}.mixins.json"],');
+  lines.push("  \"depends\": {");
+  lines.push("    \"fabricloader\": \">=" + data.fabricLoader + "\",");
+  lines.push("    \"minecraft\": \"~" + data.mcVersion + "\",");
+  lines.push("    \"java\": \">=21\",");
+  lines.push("    \"fabric-api\": \"*\"");
+  lines.push("  },");
+  lines.push("  \"suggests\": {");
+  lines.push("    \"cloth-config\": \"*\"");
+  lines.push("  }");
+  lines.push("}");
+  lines.push("```");
+  return lines.join("\n");
+
+presetInstructions(preset) =>
+  if (preset === "behavior") {
+    return "Prioritize behavior scheduling, blackboards, long-running tasks, and village-to-villager coordination patterns.";
+  }
+  if (preset === "data") {
+    return "Prioritize data-driven configs, schema examples, data pack registries, and migration/versioning guidance.";
+  }
+  if (preset === "performance") {
+    return "Prioritize tick budgets, caching, async-safe patterns, contention avoidance, and diagnostics hooks.";
+  }
+  return "";
