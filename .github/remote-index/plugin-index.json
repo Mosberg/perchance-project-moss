@@ -10,7 +10,7 @@
       "label": "ai-text-plugin",
       "description": "Generate text (stories, poems, etc) based on an instruction",
       "url": "https://perchance.org/ai-text-plugin",
-      "snippet": "ai = {import:ai-text-plugin}"
+      "snippet": "generateText = {import:ai-text-plugin}"
     },
     {
       "label": "background-audio-plugin",
@@ -172,7 +172,7 @@
       "label": "image-plugin",
       "description": "Easy image embedding",
       "url": "https://perchance.org/image-plugin",
-      "snippet": "image = {import:image-plugin}"
+      "snippet": "generateImage = {import:image-plugin}"
     },
     {
       "label": "join-lists-plugin",

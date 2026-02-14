@@ -4,8 +4,10 @@ You are assisting with a repo of Perchance generators, Perchance plugins, and ch
 
 ## Core resources
 
-- Remote links: See [remote-index.md](remote-index.md) for Perchance tutorials and live/edit links.
-- Plugin catalog: See [plugin-index.json](plugin-index.json) for Perchance plugin snippets and descriptions.
+- Remote links: See [remote-index.md](remote-index/remote-index.md) for Perchance tutorials and live/edit links.
+- Plugin catalog: See [plugin-index.json](remote-index/plugin-index.json) for Perchance plugin snippets and descriptions.
+- Knowledge base: See [knowledge-base.json](remote-index/knowledge-base.json) for a structured knowledge base of Perchance mechanics, patterns, and best practices.
+- Semantic tags: See [semantic-tags.yml](remote-index/semantic-tags.yml) for a mapping of common Perchance concepts to standardized tags for improved search and retrieval.
 
 ## Project map
 
